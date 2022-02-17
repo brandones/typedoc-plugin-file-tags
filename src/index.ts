@@ -39,10 +39,11 @@ function nodeHasCategory(node: Node) {
 
 function getModuleCategory(node: Node) {
   const sourceFile = getSourceFile(node);
+  
   if (sourceFile) {
-    const firstChildDoc = sourceFile["nextContainer"]?.["jsDoc"];
-    if (firstChildDoc?.length) {
-      for (let doc of firstChildDoc) {
+    const statements = sourceFile["statements"].filter(s => s["jsDoc"]);
+    for (let statement of statements) {
+      for (let doc of statement["jsDoc"]) {
         if (doc["tags"]?.filter(t => t.tagName.escapedText == "module").length &&
               doc["tags"]?.filter(t => t.tagName.escapedText == "category").length) {
                 return doc["tags"]?.filter(t => t.tagName.escapedText == "category")[0].comment;
