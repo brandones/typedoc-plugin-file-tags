@@ -41,7 +41,11 @@ describe(`FileTagsPlugin`, () => {
   describe(`Output HTML`, () => {
     test('HTML index exists', async () => {
       await app.generateDocs(project, outDir);
-      expect(fs.existsSync(`${outDir}/index.html`)).toBeTruthy();
+      expect(fs.existsSync(`${outDir}/modules.html`)).toBeTruthy();
+      const modulesFile = fs.readFileSync(`${outDir}/modules.html`, "utf8");
+      expect(modulesFile).toContain("Functions Grammar");
+      expect(modulesFile).toContain("Functions Math");
+      expect(modulesFile).toContain("Functions SuperMath");
     });
   });
   
