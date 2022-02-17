@@ -19,6 +19,7 @@ Include `@category` or `@internal` tags at the file level.
 ```ts
 /**
  * These tags will be applied to all the exports of this file.
+ * @module
  * @category Math
  */
 
